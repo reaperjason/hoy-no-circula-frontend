@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './components/pages/home/home.component';
 import { RegisterComponent } from './components/pages/register/register.component';
 import { PlateCheckComponent } from './components/pages/plate-check/plate-check.component';
+import { SharedModule } from './modules/shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { PlateCheckComponent } from './components/pages/plate-check/plate-check.
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    SharedModule
   ],
   providers: [],
   bootstrap: [AppComponent]
