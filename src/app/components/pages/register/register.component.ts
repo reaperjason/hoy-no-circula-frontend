@@ -8,23 +8,38 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class RegisterComponent implements OnInit {
 
-  carRegisterForm: FormGroup;
+  carRegisterForm: FormGroup = this.formBuilder.group({});
 
   constructor(private formBuilder: FormBuilder) {
-    this.carRegisterForm = this.formBuilder.group({
-      plate: ['', Validators.required],
-      color: ['', Validators.required],
-      model: ['', Validators.required],
-      chassis: ['', Validators.required],
-      year: ['', Validators.required],
-    });
+    this.buildForm();
   }
 
   ngOnInit(): void {
 
   }
 
-  guardarRegistroAuto() {
-    console.log('form');
+  buildForm() {
+    this.carRegisterForm = this.formBuilder.group({
+      plate: ['', [Validators.required, Validators.maxLength(8), Validators.minLength(6)], Validators.pattern(/^[a-zA-Z]{3}/)],
+      color: ['', [Validators.required, Validators.minLength(3)], Validators.pattern(/^[a-zA-Z]+$/)],
+      model: ['', Validators.required],
+      chassis: ['', [Validators.required, Validators.minLength(17), Validators.maxLength(17), Validators.pattern(/^[a-zA-Z0-9]+$/)]],
+    });
   }
+
+  cleanForm() {
+    this.carRegisterForm.reset();
+  }
+
+  sendCarForm() {
+    if (!this.carRegisterForm.hasError) {
+
+    } else {
+      console.log('form valid', this.carRegisterForm.value);
+    }
+
+
+  }
+
+
 }
