@@ -1,0 +1,30 @@
+.navbar {
+  height: var(--navbarHeight);
+  margin: 0 0.5rem;
+}
+
+.container-navbar {
+  width: calc(100% - 20px);
+  margin: 0 0.75rem 0 0;
+}
+
+#navbar-main {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+}
+
+.background-container {
+  height: calc(100vh - var(--navbarHeight));
+  background-image: url("../assets/images/main/mainBackground.jpg");
+}
+
+.background-container::before {
+  content: "";
+  position: absolute;
+  top: var(--navbarHeight);
+  left: 0;
+  width: 100%;
+  height: calc(100vh - var(--navbarHeight));
+  background-color: rgba(0, 0, 0, 0.3);
+}
