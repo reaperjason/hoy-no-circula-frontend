@@ -3,21 +3,36 @@
     <div class="card-body">
       <form [formGroup]="carRegisterForm" (ngSubmit)="sendCarForm()">
         <div class="mb-3">
-          <label for="placa" class="form-label">Placa</label>
-          <input type="text" class="form-control" id="placa" formControlName="placa" placeholder="IRM777" required>
+          <label for="plate" class="form-label">Placa</label>
+          <input type="text" class="form-control" id="plate" formControlName="plate" placeholder="IRM777" required
+            [ngClass]="submittedForm && carRegisterForm.get('plate')?.invalid ? 'input-error': ''">
+          <div *ngIf="submittedForm && carRegisterForm.get('plate')?.invalid">
+            <small class="error-message">La placa no es válida.</small>
+          </div>
         </div>
         <div class="mb-3">
           <label for="color" class="form-label">Color</label>
-          <input type="text" class="form-control" id="color" formControlName="color" placeholder="Rojo" required>
+          <input type="text" class="form-control" id="color" formControlName="color" placeholder="Rojo" required
+            [ngClass]="submittedForm && carRegisterForm.get('color')?.invalid ? 'input-error': ''">
+          <div *ngIf="submittedForm && carRegisterForm.get('color')?.invalid">
+            <small class="error-message">El color no es válido.</small>
+          </div>
         </div>
         <div class="mb-3">
-          <label for="modelo" class="form-label">Modelo</label>
-          <input type="text" class="form-control" id="modelo" formControlName="modelo" placeholder="Tucson" required>
+          <label for="model" class="form-label">Modelo</label>
+          <input type="text" class="form-control" id="model" formControlName="model" placeholder="Tucson" required
+            [ngClass]="submittedForm && carRegisterForm.get('model')?.invalid ? 'input-error': ''">
+          <div *ngIf="submittedForm && carRegisterForm.get('model')?.invalid">
+            <small class="error-message">El modelo no es válido.</small>
+          </div>
         </div>
         <div class="mb-3">
-          <label for="chasis" class="form-label">Chasis</label>
-          <input type="text" class="form-control" id="chasis" formControlName="chasis" placeholder="Ha021618236"
-            required>
+          <label for="chassis" class="form-label">Chasis</label>
+          <input type="text" class="form-control" id="chassis" formControlName="chassis" placeholder="WP0ZZZ99ZTS392124"
+            required [ngClass]="submittedForm && carRegisterForm.get('chassis')?.invalid ? 'input-error': ''">
+          <div *ngIf="submittedForm && carRegisterForm.get('chassis')?.invalid">
+            <small class="error-message">El chasis no es válido.</small>
+          </div>
         </div>
         <div class="form-buttons">
           <button type="button" class="btn btn-danger" (click)="cleanForm()">Cancelar</button>

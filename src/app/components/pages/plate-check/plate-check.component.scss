@@ -1,0 +1,32 @@
+.check-plate-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  margin: auto;
+  width: 50%;
+  height: 100%;
+}
+
+.card {
+  width: 60%;
+}
+
+.button {
+  display: flex;
+  justify-content: center;
+  img {
+    width: 5rem;
+    cursor: pointer;
+  }
+}
+
+.input-error {
+  border: 1px solid #dc3545;
+  background-color: #f8d7da;
+  color: #721c24;
+}
+
+.error-message {
+  color: #dc3545;
+}

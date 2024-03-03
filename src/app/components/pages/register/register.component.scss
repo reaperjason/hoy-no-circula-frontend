@@ -17,3 +17,13 @@
   justify-content: space-evenly;
   padding: 0.5rem;
 }
+
+.input-error {
+  border: 1px solid #dc3545;
+  background-color: #f8d7da;
+  color: #721c24;
+}
+
+.error-message {
+  color: #dc3545;
+}

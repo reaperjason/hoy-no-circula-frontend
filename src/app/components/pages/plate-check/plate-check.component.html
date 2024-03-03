@@ -1,1 +1,27 @@
-<p>plate-check works!</p>
+<div class="check-plate-container">
+  <div class="card">
+    <div class="card-body">
+      <form [formGroup]="plateCheckForm">
+        <div class="mb-3">
+          <label for="plate">Placa</label>
+          <input type="text" id="plate" class="form-control" formControlName="plate" placeholder="IRM777" required
+            [ngClass]="submittedForm && plateCheckForm.get('plate')?.invalid ? 'input-error': ''">
+          <div *ngIf="submittedForm && plateCheckForm.get('plate')?.invalid">
+            <small class="error-message">La placa no es válida.</small>
+          </div>
+        </div>
+        <div class="mb-3">
+          <label for="date">Fecha y Hora</label>
+          <input type="datetime-local" id="date" class="form-control" formControlName="date" required
+            [min]="localDateTime" [ngClass]="submittedForm && plateCheckForm.get('date')?.invalid ? 'input-error': ''">
+          <div *ngIf="submittedForm && plateCheckForm.get('date')?.invalid">
+            <small class="error-message">La fecha y hora no son válidas.</small>
+          </div>
+        </div>
+        <div class="button">
+          <img src="assets/buttons/icono_busqueda.svg" alt="boton para consultar hoy no circula" (click)="checkPlate()">
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
