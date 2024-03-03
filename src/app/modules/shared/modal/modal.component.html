@@ -1,0 +1,15 @@
+<div class="modal-background" [ngClass]="{'show': isOpen}" (click)="closeModal()"></div>
+<div class="modal" [ngClass]="{'show': isOpen}">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header bg-info">
+        <h4 class="modal-title" id="myModalLabel">{{ title }}</h4>
+        <button type="button" class="btn-close" (click)="closeModal()">
+        </button>
+      </div>
+      <div class="modal-body">
+        <ng-content></ng-content>
+      </div>
+    </div>
+  </div>
+</div>

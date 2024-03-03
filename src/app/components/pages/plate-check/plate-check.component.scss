@@ -30,3 +30,35 @@
 .error-message {
   color: #dc3545;
 }
+
+.restiction-result {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  p {
+    padding: 0;
+    margin: 0;
+  }
+}
+
+.positive-result {
+  color: #0000ff;
+  font-weight: 500;
+  padding: 0.2rem;
+}
+
+.negative-result {
+  color: #ff0000;
+  font-weight: 500;
+  padding: 0.2rem;
+}
+
+.md-buttons {
+  display: flex;
+  justify-content: space-evenly;
+  padding: 0.5rem;
+  a {
+    color: white;
+    text-decoration: none;
+  }
+}

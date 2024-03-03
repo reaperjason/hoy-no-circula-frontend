@@ -13,22 +13,27 @@ export class PlateCheckComponent {
 
   plateCheckForm!: FormGroup;
   submittedForm = false;
-  today: Date;
-  localDateTime: string;
+  today!: Date;
+  localDateTime: string = '';
 
+  //modal
+  isModalOpen: boolean = false;
+
+  //results
+  registeredCar = false;
+  restrictedCar = false;
 
   constructor(
     private formBuilder: FormBuilder,
     private toastr: ToastrService,
     private carService: CarService
   ) {
-    this.today = new Date();
-    this.localDateTime = this.formatDateToLocal(this.today);
     this.buildForm();
   }
 
   buildForm() {
-    console.log('date', this.localDateTime);
+    this.today = new Date();
+    this.localDateTime = this.formatDateToLocal(this.today);
     this.plateCheckForm = this.formBuilder.group({
       plate: ['', [Validators.required, Validators.maxLength(8), Validators.minLength(6), Validators.pattern(/^[a-zA-Z]{3}/)]],
       date: [this.localDateTime, [Validators.required, this.validateDate.bind(this)]]
@@ -60,6 +65,7 @@ export class PlateCheckComponent {
         fecha: this.plateCheckForm.value.date
       }
       //open modal
+      this.openModal();
       //load spinner
       //call to api service to check circulation
       // this.carService.checkCirculationByPlate(carData)
@@ -87,5 +93,16 @@ export class PlateCheckComponent {
     const hours = ('0' + date.getHours()).slice(-2);
     const minutes = ('0' + date.getMinutes()).slice(-2);
     return `${year}-${month}-${day}T${hours}:${minutes}`;
+  }
+
+  openModal() {
+    this.isModalOpen = true;
+  }
+
+  modalClosed() {
+    this.isModalOpen = false;
+    this.plateCheckForm.reset();
+    this.buildForm();
+    this.submittedForm = false;
   }
 }
