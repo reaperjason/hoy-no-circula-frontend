@@ -18,6 +18,7 @@ export class PlateCheckComponent {
 
   //modal
   isModalOpen: boolean = false;
+  loading = false
 
   //results
   registeredCar = false;
@@ -70,6 +71,7 @@ export class PlateCheckComponent {
       //open modal
       this.openModal();
       //load spinner
+      this.loading = true
       //call to api service to check circulation
       this.carService.checkCirculationByPlate(carData)
         .subscribe({
@@ -80,6 +82,7 @@ export class PlateCheckComponent {
             } else {
               this.restrictedCar = true;
             }
+            this.loading = false;
           },
           error: err => {
             if (err.error.error.codigo == "404") {
@@ -90,6 +93,7 @@ export class PlateCheckComponent {
               this.isModalOpen = false;
               this.toastr.error('No se pudo realizar la consulta', 'Error!');
             }
+            this.loading = false;
           }
         });
     } else {

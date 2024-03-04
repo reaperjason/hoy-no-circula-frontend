@@ -29,21 +29,26 @@
 <!-- modal to show query result -->
 <app-modal [isOpen]="isModalOpen" [title]="'RESULTADO'" (modalClosed)="modalClosed()">
   <!-- Contenido del modal -->
-  <div class="restiction-result" *ngIf="registeredCar; else notFound">
-    <p>En la fecha {{plateCheckForm.value.date | date: 'medium'}} el vehículo:</p>
-    <span *ngIf="!restrictedCar" class="positive-result">SI</span>
-    <span *ngIf="restrictedCar" class="negative-result">NO</span>
-    <span>Puede circular</span>
+  <div *ngIf="loading">
+    <app-spinner [show]="true" class="spinner-md"></app-spinner>
   </div>
-  <ng-template #notFound>
-    <div class="not-found-result">
-      <p>El vehículo con placa {{plateCheckForm.value.plate}} no se encuentra registrado</p>
-      <div class="md-buttons">
-        <button type="button" class="btn btn-danger" (click)="modalClosed()">Cancelar</button>
-        <button type="button" class="btn btn-primary">
-          <a routerLink="/register">Registrar vehículo</a>
-        </button>
-      </div>
+  <div *ngIf="!loading">
+    <div class="restiction-result" *ngIf="registeredCar; else notFound">
+      <p>En la fecha {{plateCheckForm.value.date | date: 'medium'}} el vehículo:</p>
+      <span *ngIf="!restrictedCar" class="positive-result">SI</span>
+      <span *ngIf="restrictedCar" class="negative-result">NO</span>
+      <span>Puede circular</span>
     </div>
-  </ng-template>
+    <ng-template #notFound>
+      <div class="not-found-result">
+        <p>El vehículo con placa {{plateCheckForm.value.plate}} no se encuentra registrado</p>
+        <div class="md-buttons">
+          <button type="button" class="btn btn-danger" (click)="modalClosed()">Cancelar</button>
+          <button type="button" class="btn btn-primary">
+            <a routerLink="/register">Registrar vehículo</a>
+          </button>
+        </div>
+      </div>
+    </ng-template>
+  </div>
 </app-modal>

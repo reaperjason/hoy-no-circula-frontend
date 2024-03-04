@@ -14,7 +14,8 @@ import { SpinnerComponent } from './spinner/spinner.component';
     CommonModule
   ],
   exports: [
-    ModalComponent
+    ModalComponent,
+    SpinnerComponent
   ]
 })
 export class SharedModule { }
