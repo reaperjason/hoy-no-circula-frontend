@@ -33,7 +33,7 @@
     <p>En la fecha {{plateCheckForm.value.date | date: 'medium'}} el vehículo:</p>
     <span *ngIf="!restrictedCar" class="positive-result">SI</span>
     <span *ngIf="restrictedCar" class="negative-result">NO</span>
-    <span> puede circular</span>
+    <span>Puede circular</span>
   </div>
   <ng-template #notFound>
     <div class="not-found-result">

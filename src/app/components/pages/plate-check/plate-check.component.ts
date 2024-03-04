@@ -52,35 +52,46 @@ export class PlateCheckComponent {
   }
 
   checkPlate() {
-    //Update date and time
+    //Update date and time, variables
     this.today = new Date();
     this.localDateTime = this.formatDateToLocal(this.today);
-
+    this.registeredCar = false;
+    this.restrictedCar = false;
     this.submittedForm = true;
+
     if (this.plateCheckForm.valid) {
       //DTO map
       let carData: CheckPlateDto;
+      let plateAlphaNumeric = this.plateCheckForm.value.plate.replace(/-/g, '');
       carData = {
-        placa: this.plateCheckForm.value.plate,
+        placa: plateAlphaNumeric,
         fecha: this.plateCheckForm.value.date
       }
       //open modal
       this.openModal();
       //load spinner
       //call to api service to check circulation
-      // this.carService.checkCirculationByPlate(carData)
-      //   .subscribe({
-      //     next: res => {
-      //       console.log('res', res);
-      //     },
-      //     error: err => {
-      //       //404
-      //       this.toastr.error('El auto no se encuentra registrado', 'Error!');
-      //       //other
-      //       this.toastr.error('No se pudo realizar la consulta', 'Error!');
-      //     }
-      //   });
-      console.log(this.plateCheckForm.value);
+      this.carService.checkCirculationByPlate(carData)
+        .subscribe({
+          next: res => {
+            this.registeredCar = true;
+            if (res.circula) {
+              this.restrictedCar = false;
+            } else {
+              this.restrictedCar = true;
+            }
+          },
+          error: err => {
+            if (err.error.error.codigo == "404") {
+              this.registeredCar = false;
+              this.toastr.error('El auto no se encuentra registrado', 'Error!');
+            } else {
+              //other
+              this.isModalOpen = false;
+              this.toastr.error('No se pudo realizar la consulta', 'Error!');
+            }
+          }
+        });
     } else {
       this.toastr.error('El formulario contiene errores', 'Error!');
     }

@@ -19,17 +19,16 @@ export class CarService {
 
 
   createCar(newCar: CreateCarDto): Observable<any> {
-    return this.http.post(`${this.baseUrl}/api/dytron/newRegistro`, newCar)
+    return this.http.post(`${this.baseUrl}/api/v1/car`, newCar)
       .pipe(catchError(this.handleError));
   }
 
   checkCirculationByPlate(car: CheckPlateDto): Observable<any> {
-    return this.http.post(`${this.baseUrl}/api/dytron/newRegistro`, car)
+    return this.http.post(`${this.baseUrl}/api/v1/car/plate`, car)
       .pipe(catchError(this.handleError));
   }
 
   handleError(error: HttpErrorResponse) {
-    console.error('An error occurred:', error);
     //acciones segun el tipo de error
     return throwError(() => new HttpErrorResponse({ error }));
   }

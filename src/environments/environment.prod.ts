@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  urlBase: 'https://www.fundacionjuntosporecuador.org'
+  urlBase: 'http://3.19.200.96:8080'
 };

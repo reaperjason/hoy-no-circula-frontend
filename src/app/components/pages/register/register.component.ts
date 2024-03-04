@@ -46,31 +46,28 @@ export class RegisterComponent implements OnInit {
     if (this.carRegisterForm.valid) {
       //map form values to DTO
       let newCar: CreateCarDto;
+      let plateAlphaNumeric = this.carRegisterForm.value.plate.replace(/-/g, '');
       newCar = {
-        placa: this.carRegisterForm.value.plate,
+        placa: plateAlphaNumeric,
         color: this.carRegisterForm.value.color,
         modelo: this.carRegisterForm.value.model,
         chasis: this.carRegisterForm.value.chassis,
       }
       //peticion API
-      // this.carService.createCar(newCar)
-      //   .subscribe({
-      //     next: res => {
-      //       console.log('res', res);
-      //       this.toastr.success('El auto se guardo exitosamente', 'Exito!');
-      //        this.cleanForm();
-      //     },
-      //     error: err => {
-      //       this.toastr.error('El auto no se pudo guardar', 'Error!');
-      //     }
-      //   });
-      this.toastr.success('El auto se guardo exitosamente', 'Exito!');
-      this.cleanForm();
+      this.carService.createCar(newCar)
+        .subscribe({
+          next: res => {
+            if (res.codigo == "201")
+              this.toastr.success('El auto se guardo exitosamente', 'Exito!');
+            this.cleanForm();
+          },
+          error: err => {
+            this.toastr.error('El auto no se pudo guardar', 'Error!');
+          }
+        });
     } else {
       this.toastr.error('El formulario contiene errores', 'Error!');
     }
 
   }
-
-
 }
