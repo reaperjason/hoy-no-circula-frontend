@@ -26,7 +26,7 @@ Aunque el prototipo de Figma no tiene diseños para aplicaciones mobiles, la app
 
 Es importante considerar los detalles técnicos para que el proyecto pueda correr correctamente.
 A continuación se detallan los pasos a seguir:
-  1) Clonar el proyecto de forma local desde este repositorio
+  1) Clonar el proyecto de forma local desde este repositorio, rama master
   2) Instalar las dependencias necesarias con npm install --save
   3) Revisar los enviroment del proyecto y verificar que se use la URL del servidor backend (servidor AWS) o la URL local (servidor backend local)
   4) Ejecutar el comando ng s, asegurandose que el puerto sea el 4200 (puerto por defecto, habilitado en CORS)
