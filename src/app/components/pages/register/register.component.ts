@@ -51,10 +51,10 @@ export class RegisterComponent implements OnInit {
       let newCar: CreateCarDto;
       let plateAlphaNumeric = this.carRegisterForm.value.plate.replace(/-/g, '');
       newCar = {
-        placa: plateAlphaNumeric,
-        color: this.carRegisterForm.value.color,
-        modelo: this.carRegisterForm.value.model,
-        chasis: this.carRegisterForm.value.chassis,
+        placa: plateAlphaNumeric.toUpperCase(),
+        color: this.carRegisterForm.value.color.toUpperCase(),
+        modelo: this.carRegisterForm.value.model.toUpperCase(),
+        chasis: this.carRegisterForm.value.chassis.toUpperCase(),
       }
 
       //peticion API

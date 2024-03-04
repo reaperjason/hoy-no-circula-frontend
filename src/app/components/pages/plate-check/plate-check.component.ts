@@ -65,7 +65,7 @@ export class PlateCheckComponent {
       let carData: CheckPlateDto;
       let plateAlphaNumeric = this.plateCheckForm.value.plate.replace(/-/g, '');
       carData = {
-        placa: plateAlphaNumeric,
+        placa: plateAlphaNumeric.toUpperCase(),
         fecha: this.plateCheckForm.value.date
       }
       //open modal
