@@ -30,7 +30,7 @@
 <app-modal [isOpen]="isModalOpen" [title]="'RESULTADO'" (modalClosed)="modalClosed()">
   <!-- Contenido del modal -->
   <div *ngIf="loading">
-    <app-spinner [show]="true" class="spinner-md"></app-spinner>
+    <app-spinner [show]="loading" class="spinner-md"></app-spinner>
   </div>
   <div *ngIf="!loading">
     <div class="restiction-result" *ngIf="registeredCar; else notFound">

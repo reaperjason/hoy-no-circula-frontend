@@ -14,6 +14,8 @@ export class RegisterComponent implements OnInit {
   carRegisterForm: FormGroup = this.formBuilder.group({});
   submittedForm = false;
 
+  //spinner control
+  loading = false
 
   constructor(
     private formBuilder: FormBuilder,
@@ -43,6 +45,7 @@ export class RegisterComponent implements OnInit {
 
   sendCarForm() {
     this.submittedForm = true;
+    this.loading = false
     if (this.carRegisterForm.valid) {
       //map form values to DTO
       let newCar: CreateCarDto;
@@ -53,21 +56,28 @@ export class RegisterComponent implements OnInit {
         modelo: this.carRegisterForm.value.model,
         chasis: this.carRegisterForm.value.chassis,
       }
+
       //peticion API
+      this.loading = true;
       this.carService.createCar(newCar)
         .subscribe({
           next: res => {
             if (res.codigo == "201")
               this.toastr.success('El auto se guardo exitosamente', 'Exito!');
+            this.loading = false;
             this.cleanForm();
           },
           error: err => {
-            this.toastr.error('El auto no se pudo guardar', 'Error!');
+            if (err.error.error.codigo == "409") {
+              this.toastr.error('El auto ya se encuentra registrado', 'Error!');
+            } else {
+              this.toastr.error('El auto no se pudo guardar', 'Error!');
+            }
+            this.loading = false;
           }
         });
     } else {
       this.toastr.error('El formulario contiene errores', 'Error!');
     }
-
   }
 }
