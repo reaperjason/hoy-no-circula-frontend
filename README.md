@@ -20,6 +20,7 @@ bootstrap: 5.0.2
 
 El proyecto tiene un prototipo hecho en Figma, donde se visualizan las principales pantallas del mismo.
 Enlace a Figma: https://www.figma.com/file/wWvfoCb6znWzItecSBAWnB/Hoy-no-circula?type=design&t=Kj50V75cmg3MVgMh-6
+Aunque el prototipo de Figma no tiene diseños para aplicaciones mobiles, la app si cuenta con responsive design integrado.
 
 ## Instalacion
 
