@@ -28,3 +28,22 @@
   height: calc(100vh - var(--navbarHeight));
   background-color: rgba(0, 0, 0, 0.3);
 }
+
+.bi-house-door {
+  font-size: x-large;
+}
+
+.navbar {
+  flex-wrap: nowrap;
+}
+
+@media only screen and (max-width: 600px) {
+  .container-navbar {
+    margin: 0.5rem 0.75rem 0 0;
+  }
+  #navbar-main {
+    h1 {
+      font-size: 18px;
+    }
+  }
+}
